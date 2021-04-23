@@ -1,8 +1,7 @@
 import React from "react"
-import { Link } from "gatsby"
 import Header from "../components/header"
 import * as styles from "./about.module.css"
-import Container from "../components/container"
+import Layout from "../components/layout"
 
 const User = props => (
   <div className={styles.user}>
@@ -16,8 +15,7 @@ const User = props => (
 
 export default function About() {
   return (
-    <Container>
-      <Link to="/">Home</Link>
+    <Layout>
       <Header headerText="About Gatsby" />
       <Header headerText="It's pretty cool" />
       <User
@@ -30,6 +28,6 @@ export default function About() {
         avatar="https://raw.githubusercontent.com/gatsbyjs/gatsby/master/docs/docs/tutorial/part-two/pexels-guilherme-almeida-1858175.jpg"
         excerpt="I'm Daniela Dewitt. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
       />
-    </Container>
+    </Layout>
   )
 }
