@@ -1,26 +1,49 @@
 import React from "react"
-import * as containerStyles from "./layout.module.css"
-import { Link } from "gatsby"
+import { css } from "@emotion/react"
+import { useStaticQuery, Link, graphql } from "gatsby"
 
-const ListLink = props => (
-  <li style={{ display: `inline-block`, marginRight: `1rem` }}>
-    <Link to={props.to}>{props.children}</Link>
-  </li>
-)
+import { rhythm } from "../utils/typography"
 
 export default function Layout({ children }) {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  )
   return (
-    <div className={containerStyles.container}>
-      <header style={{ marginBottom: `1.5rem` }}>
-        <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
-          <h3 style={{ display: `inline` }}>MySweetSite</h3>
-        </Link>
-        <ul style={{ listStyle: `none`, float: `right` }}>
-          <ListLink to="/">Home</ListLink>
-          <ListLink to="/about/">About</ListLink>
-          <ListLink to="/contact/">Contact</ListLink>
-        </ul>
-      </header>
+    <div
+      style={{
+        margin: "0 auto",
+        maxWidth: "700px",
+        padding: `${rhythm(2)}`,
+        paddingTop: `${rhythm(1.5)}`,
+      }}
+    >
+      <Link to={`/`}>
+        <h3
+          css={{
+            marginBottom: `${rhythm(2)}`,
+            display: "inline-block",
+            fontStyle: "normal",
+          }}
+        >
+          {data.site.siteMetadata.title}
+        </h3>
+      </Link>
+      <Link
+        to={`/about/`}
+        css={{
+          float: "right",
+        }}
+      >
+        About
+      </Link>
       {children}
     </div>
   )
